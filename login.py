@@ -28,7 +28,7 @@ def show_help():
 
 
 def get_exec_path():
-    chrome_version = '83'
+    chrome_version = '86'
     base_path = './drivers/chrome/' + chrome_version + '/'
     path = ''
     os = platform.system()
