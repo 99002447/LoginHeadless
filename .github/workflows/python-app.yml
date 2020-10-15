@@ -30,6 +30,6 @@ jobs:
         
     - name: Build
       run: |
-         python login.py   
+         python login.py -u <sourabjacob@gmail.com> -p <sourabA12> 
         
   
