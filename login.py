@@ -27,7 +27,7 @@ def show_help():
     )
 
 
-def get_exec_path():
+'''def get_exec_path():
     chrome_version = '86'
     base_path = './drivers/chrome/' + chrome_version + '/'
     path = ''
@@ -42,7 +42,7 @@ def get_exec_path():
         print('Unknown System OS...')
         sys.exit(1)
     return path
-
+'''
 
 def get_user_info(argv):
     user_info = []
@@ -81,7 +81,7 @@ def get_driver():
     # See: https://stackoverflow.com/questions/57298901/unable-to-hide-chrome-is-being-controlled-by-automated-software-infobar-within
     if NO_GUI:
         op.add_argument('headless')
-    driver = webdriver.Chrome(executable_path=get_exec_path(), options=op)
+    driver = webdriver.Chrome(executable_path="./drivers/chrome/86/linux", options=op)
     return driver
 
 
