@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
@@ -12,7 +10,7 @@ import time
 import sys
 import getopt
 import platform
-# 防止编码问题
+
 
 
 SLEEP_TIME = 1
@@ -74,11 +72,7 @@ def get_driver():
     global NO_GUI
     # Chrome options
     op = webdriver.ChromeOptions()
-    # 关掉浏览器左上角的通知提示
     op.add_argument("--disable-notifications")
-    # 关闭'chrome正受到自动测试软件的控制'提示
-    # op.add_argument("disable-infobars")
-    # See: https://stackoverflow.com/questions/57298901/unable-to-hide-chrome-is-being-controlled-by-automated-software-infobar-within
     if NO_GUI:
         op.add_argument('headless')
     driver = webdriver.Chrome(executable_path="./drivers/chrome/86/linux", options=op)
@@ -88,7 +82,7 @@ def get_driver():
 def login_state(driver, login_type):
     tmp = driver.find_elements_by_tag_name('ul')
     if login_type == 1:
-        # 判断登录是否出错
+       
         if tmp[0].text.find('错误') != -1:
             if len(tmp) > 1:
                 print(tmp[1].text)
@@ -108,8 +102,6 @@ def login_state(driver, login_type):
 
 
 def login(driver, user_info):
-    # 用户名
-    # 显式等待
     try:
         username = WebDriverWait(driver, 5, 0.5).until(
             EC.presence_of_element_located((By.ID, "txtuser"))
@@ -120,8 +112,6 @@ def login(driver, user_info):
         print('超时...')
         driver.quit()
         sys.exit(1)
-    # 密码
-    # 隐式等待
     driver.implicitly_wait(10)
     try:
         password = driver.find_element_by_id('txtPwd')
@@ -130,10 +120,8 @@ def login(driver, user_info):
     except NoSuchElementException as e:
         driver.quit()
         sys.exit(1)
-    # 用户类型
     select = Select(driver.find_element_by_id('userType'))
     select.select_by_visible_text('学生用户')
-    # 登录
     driver.find_elements_by_tag_name('a')[3].click()
 
 
