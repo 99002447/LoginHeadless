@@ -13,8 +13,6 @@ import sys
 import getopt
 import platform
 # 防止编码问题
-reload(sys)
-sys.setdefaultencoding("utf-8")
 
 
 SLEEP_TIME = 1
